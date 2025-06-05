@@ -1,0 +1,77 @@
+<!-- 不具合・意見要望フォーム部分（共通フレーム内に挿入してください） -->
+<section class="feedback-form">
+  <h2>不具合・意見要望フォーム</h2>
+
+  <form id="feedbackForm"
+        action="/haikokikan/feedback/send"  <!-- ★送信先URLを適宜変更 -->
+        method="post"
+        enctype="multipart/form-data">
+
+    <!-- １．ユーザー名（自動取得・表示） -->
+    <div class="form-group">
+      <label>ユーザー名</label>
+      <!-- JS で埋め込む readonly 表示用の <p> -->
+      <p class="readonly-field" id="usernameDisplay">取得中...</p>
+      <!-- 送信用の非表示フィールド -->
+      <input type="hidden" name="username" id="usernameInput">
+    </div>
+
+    <!-- ２．営業所名 -->
+    <div class="form-group">
+      <label for="office">営業所名<span class="req">*</span></label>
+      <input type="text"
+             id="office"
+             name="office"
+             required
+             placeholder="例：福岡営業所">
+    </div>
+
+    <!-- 「どのユーザーが使用しているときですか？」 -->
+    <div class="form-group">
+      <label for="userRole">どのユーザーが使用しているときですか？<span class="req">*</span></label>
+      <select id="userRole" name="userRole" required>
+        <option value="" selected disabled>選択してください</option>
+        <option>担当者・技術職</option>
+        <option>主任</option>
+        <option>班長・作業員</option>
+        <option>建柱班</option>
+        <option>引込班</option>
+        <option>内線班</option>
+        <option>その他</option>
+      </select>
+    </div>
+
+    <!-- ３．不具合 or 意見要望 -->
+    <div class="form-group">
+      <label>種類<span class="req">*</span></label>
+      <label class="radio-inline">
+        <input type="radio" name="issue_type" value="不具合" required> 不具合
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="issue_type" value="意見要望"> 意見要望
+      </label>
+    </div>
+
+    <!-- ４．詳細内容 -->
+    <div class="form-group">
+      <label for="details">詳細内容<span class="req">*</span></label>
+      <textarea id="details"
+                name="details"
+                required
+                placeholder="具体的な症状や要望をできるだけ詳しく記入してください。"></textarea>
+    </div>
+
+    <!-- ５．スクリーンショット -->
+    <div class="form-group">
+      <label for="screenshot">スクリーンショット（任意）</label>
+      <input type="file"
+             id="screenshot"
+             name="screenshot"
+             accept="image/*">
+      <small>PNG, JPEG などの画像ファイルを選択してください。</small>
+    </div>
+
+    <!-- 送信ボタン -->
+    <button type="submit" class="submit-btn">送信</button>
+  </form>
+</section>
